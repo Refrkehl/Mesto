@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+    <link href="./vendor/normalize.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+    <div class="page__container">
+        <header class="header">
+            <div class="header__container">
+                <img class="header__logo" src="./Images/logo.svg" alt="логотип Mesto">
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="profile">
+                <div id="avatar-edit" class="profile__avatar-container">
+                    <img class="profile__avatar" alt="Аватар" src="./images/Avatar.jpg">
+                </div>
+                <div class="profile__text-container">
+                    <div class="profile__name-container">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button id="edit-btn" class="profile__edit-button button" type="button" title="Редактировать профиль"></button>
+                    </div>
+                    <p class="profile__name-caption">Исследователь океана</p>
+                </div>
+                <button id="add-button" class="profile__add-button button" type="button"></button>
+            </section>
+
+            <section class="elements">
+                <div class="elements__container">
+                    <template class="elements__template">
+                        <figure class="elements__card">
+                            <img class="elements__card-image" src="" alt="">
+                            <button class="elements__delete-btn button" type="button"></button>
+                            <figcaption class="elements__card-caption">
+                                <p class="elements__card-name"></p>
+                                <button class="elements__like-button button" type="button"></button>
+                            </figcaption>
+                        </figure>
+                    </template>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer">
+            <p class="footer__caption">&#169;2023 Mesto Russia</p>
+        </footer>
+    
+<!---------------Попапы-------------->
+    <div class="popup profile__popup hidden">
+        <div class="popup__block">
+            <form class="popup__form" name="profile-edit" method="get" action="#">
+                <h2 class="popup__form-name">Редактировать профиль</h2>
+                <div class="field-container">
+                    <input id="profile-name" class="popup__field" type="text" name="profileName" minlength="2" maxlength="20" required>
+                    <span class="alert"></span>
+                </div>
+                <div class="field-container">
+                    <input id="profile-caption" class="popup__field" type="text" name="profileCaption"  minlength="3" maxlength="100">
+                    <span class="alert"></span>
+                </div>
+                <button id="profile-save" class="popup__save-btn button" type="submit">Сохранить</button>
+            </form>
+            <button id="profile-close" class="popup__close-btn button" type="button"></button>
+        </div>
+    </div>
+
+    <div class="popup elements__popup hidden">
+        <div class="popup__block">
+            <form class="popup__form" name="place-create" method="get" action="#">
+                <h2 class="popup__form-name">Новое место</h2>
+                <div class="field-container">
+                    <input id="place-name" class="popup__field" 
+                        type="text" 
+                        name="placeName" 
+                        placeholder="Название" 
+                        value=""  
+                        minlength="2" 
+                        maxlength="20" 
+                        required>
+                    <span class="alert"></span>
+                </div> 
+                <div class="field-container">
+                    <input id="place-caption" class="popup__field" 
+                        type="url" 
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" 
+                        name="placeCaption" 
+                        placeholder="Ссылка на картинку" 
+                        value="" 
+                        minlength="2" 
+                        required>
+                    <span class="alert"></span>
+                </div>
+                <button id="place-create-btn" class="popup__save-btn button" type="submit">Создать</button>
+            </form>
+            <button id="place-close-btn" class="popup__close-btn button" type="button"></button>
+        </div>
+    </div>
+
+    <div class="popup avatar__popup hidden">
+        <div class="popup__block">
+            <form class="popup__form" name="avatar-change" method="get" action="#">
+                <h2 class="popup__form-name">Обновить аватар</h2>
+                <div class="field-container">
+                    <input id="avatar-change-name" class="popup__field" type="url" 
+                    pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" 
+                    name="avatarChangeName" placeholder="Вставьте ссылку" value="" required>
+                    <span class="alert"></span>
+                </div>
+                <button id="avatar-change-btn" class="popup__save-btn button" type="submit">Сохранить</button>
+            </form>
+            <button id="avatar-close-btn" class="popup__close-btn button" type="button"></button>
+        </div>
+    </div>
+
+    <div class="popup photo__full-size hidden">
+        <div class="photo__container">
+            <img class="photo" alt="" src="">
+            <span class="photo__caption"></span>
+            <button class="photo__close-btn button"></button>
+        </div>
+    </div>
+
+    <div class="popup confirm hidden">
+        <div class="popup__block">
+            <div class="confirm__container">
+                <h2 class="confirm__name">Вы уверены?</h2>
+                <button id="confirm-btn" class="popup__save-btn" type="submit">Да</button>
+            </div>
+            <button id="confirm-close-btn" class="popup__close-btn button" type="button"></button>
+        </div>
+    </div>
+
+    </div>
+    <script src="./js/data.js"></script>
+    <script src="./js/cards.js"></script>
+    <script src="./js/validity.js"></script>
+</body>
