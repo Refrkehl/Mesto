@@ -30,6 +30,8 @@ const avatarPopupBtn = document.getElementById('avatar-change-btn');//кнопк
 const avatarPopupCloseBtn = document.getElementById('avatar-close-btn'); //кнопка закрытия попапа аватара
 const avatarBtn = document.getElementById('avatar-edit'); //кнопка открытия попапа аватара
 
+
+//Создаёт новую карточку, клонируя шаблон
 function createCard (element) {
     const newCard = template.cloneNode(true);
     const cardImage = newCard.querySelector('.elements__card-image');
@@ -48,16 +50,17 @@ cards.forEach(element => {
     elementsList.append(createCard(element));
 });
 
+// Добавляет/убирает лайк на карточке
 function like(evt) {
     evt.target.classList.toggle('elements__like-btn-active');
 }
-
+// Удаляет карточку
 function deleteCard(evt) {
     evt.target.closest('.elements__card').remove();
 }
 
 // попап редактирования профиля
-
+// Открывает/закрывает попап редактирования профиля
 function toggleProfilePopup() {
     profilePopup.classList.toggle('hidden');
 };
@@ -74,11 +77,11 @@ closeBtn.addEventListener('click', function(){
 
 
 // попап добавления карточки
-
+// Открывает/закрывает попап добавления карточки
 function toggleElementsPopup() {
     elementsPopup.classList.toggle('hidden');
 };
-
+// Отключает кнопку формы создания карточки при открытии попапа
 createBtn.addEventListener('click', function(){
     placeCreateButton.disabled = true;
     placeCreateButton.classList.add('disabled');
@@ -89,7 +92,7 @@ placeCloseBtn.addEventListener('click', function(){
     toggleElementsPopup();
 });
 
-
+//Задаёт значения заголовка и описания профиля в инпутах формы, когда попап открыт
 function getPopupEditValue() {
     inputProfileName.value = profileName.textContent;
     inputProfileCaption.value = profileCaption.textContent;
@@ -104,7 +107,7 @@ function editProfileName (){
 
 profileForm.addEventListener('submit', editProfileName)
 
-// добавление новой карточки от пользователя
+// Создаёт новую карточку
 function addNewCard(evt){
     evt.preventDefault();
     const cardDetails = createCard ({
@@ -124,6 +127,8 @@ function toggleAvatarPopup() {
     avatarPopup.classList.toggle('hidden');
 };
 
+
+//Отключает кнопку отправки формы при открытии попапа
 avatarBtn.addEventListener('click', function(){
     avatarPopupBtn.disabled = true;
     avatarPopupBtn.classList.add('disabled');
@@ -134,7 +139,7 @@ avatarPopupCloseBtn.addEventListener('click', function(){
     toggleAvatarPopup();
 });
 
-
+// Изменяет имя и подпись профиля после отправки формы попапа
 avatarPopupForm.addEventListener('submit', function () {
     const profileAvatarImg = document.querySelector('.profile__avatar');
 
@@ -143,7 +148,7 @@ avatarPopupForm.addEventListener('submit', function () {
 });
 
 
-//попап с полной фотографией
+//Добавляет класс скрытия попапу с фотографией
 function togglePhotoPopup() {
     fullPhoto.classList.toggle('hidden');
 };
@@ -152,6 +157,7 @@ photoCloseBtn.addEventListener('click', function () {
     togglePhotoPopup();
 });
 
+// Открывает полноразмерное изображение
 function openFullPhoto(evt){
     photo.src = evt.target.src;
     photo.alt = evt.target.alt;
@@ -159,6 +165,7 @@ function openFullPhoto(evt){
     togglePhotoPopup();
 }
 
+// Сбрасывает(скрывает) спаны с ошибкой ввода
 function spanReset (evt) {
     const spanAlerts = evt.target.closest('.popup__block').querySelectorAll('.alert');
 
